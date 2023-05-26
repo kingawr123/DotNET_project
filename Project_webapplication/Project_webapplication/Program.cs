@@ -1,4 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Project_webapplication.Data;
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<LoodspotContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("LoodspotContext") ?? throw new InvalidOperationException("Connection string 'LoodspotContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
