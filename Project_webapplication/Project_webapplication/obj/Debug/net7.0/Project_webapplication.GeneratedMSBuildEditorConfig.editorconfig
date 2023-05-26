@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\kinga\Documents\Github\DotNET_project\Project_webapplication\Project_webapplication
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/kinga/Documents/Github/DotNET_project/Project_webapplication/Project_webapplication/Views/Home/Documentation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEb2N1bWVudGF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/kinga/Documents/Github/DotNET_project/Project_webapplication/Project_webapplication/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
