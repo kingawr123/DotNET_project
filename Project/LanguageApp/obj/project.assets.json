@@ -10934,19 +10934,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\keste\\.nuget\\packages\\": {}
+    "C:\\Users\\kinga\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\keste\\CShProjects\\DotNET_project\\Project\\LanguageApp\\LanguageApp.csproj",
+      "projectUniqueName": "C:\\Users\\kinga\\Documents\\Github\\DotNET_project\\Project\\LanguageApp\\LanguageApp.csproj",
       "projectName": "LanguageApp",
-      "projectPath": "C:\\Users\\keste\\CShProjects\\DotNET_project\\Project\\LanguageApp\\LanguageApp.csproj",
-      "packagesPath": "C:\\Users\\keste\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\keste\\CShProjects\\DotNET_project\\Project\\LanguageApp\\obj\\",
+      "projectPath": "C:\\Users\\kinga\\Documents\\Github\\DotNET_project\\Project\\LanguageApp\\LanguageApp.csproj",
+      "packagesPath": "C:\\Users\\kinga\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kinga\\Documents\\Github\\DotNET_project\\Project\\LanguageApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\keste\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\kinga\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -11014,7 +11014,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
