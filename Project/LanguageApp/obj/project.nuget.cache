@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "u5r1kwqMeR1B8E4ixc2Jz0DiKQ4ct9soJbwr+b1Tl5T5AkVExO2fqjNKu8pPIhqKwJGZjSYZoSoLGbqfWdeIQg==",
+  "dgSpecHash": "3WUsx/L+l0/Pej4AeIaO7+JsDR3S8Ut5NeARGOLNJSJ01oG/FmMsaHsQsofNP6aaTjHRbtKemJFe5QNn+yKUWA==",
   "success": true,
   "projectFilePath": "C:\\Users\\keste\\CShProjects\\DotNET_project\\Project\\LanguageApp\\LanguageApp.csproj",
   "expectedPackageFiles": [
@@ -11,7 +11,7 @@
     "C:\\Users\\keste\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\keste\\.nuget\\packages\\microsoft.build\\17.3.2\\microsoft.build.17.3.2.nupkg.sha512",
     "C:\\Users\\keste\\.nuget\\packages\\microsoft.build.framework\\17.3.2\\microsoft.build.framework.17.3.2.nupkg.sha512",
-    "C:\\Users\\keste\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.3\\microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",
+    "C:\\Users\\keste\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.4\\microsoft.codeanalysis.analyzers.3.3.4.nupkg.sha512",
     "C:\\Users\\keste\\.nuget\\packages\\microsoft.codeanalysis.analyzerutilities\\3.3.0\\microsoft.codeanalysis.analyzerutilities.3.3.0.nupkg.sha512",
     "C:\\Users\\keste\\.nuget\\packages\\microsoft.codeanalysis.common\\4.4.0\\microsoft.codeanalysis.common.4.4.0.nupkg.sha512",
     "C:\\Users\\keste\\.nuget\\packages\\microsoft.codeanalysis.csharp\\4.4.0\\microsoft.codeanalysis.csharp.4.4.0.nupkg.sha512",

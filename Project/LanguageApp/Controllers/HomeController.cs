@@ -17,11 +17,18 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        if (_loggedin){
-            return RedirectToAction("LoggedIn");
+        string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+        if (HttpContext.Session.Keys.Contains("pierwszy_request")){
+            TempData["Message"] =HttpContext.Session.GetString("UserId") == HttpContext.Session.GetString("Admin");
+        }
+        if (isLoggedIn == "true")
+        {
+           return RedirectToAction("LoggedIn");
         }
         else
+        {
             return View();
+        }
     }
 
     public IActionResult LoggedIn(){
@@ -30,9 +37,21 @@ public class HomeController : Controller
 
     public IActionResult Login(User model)
     {
-        string Username = model.Username;
+        /*string Username = model.Username;
         string Password = model.Password;
-        _loggedin = true;
-        return View();
+        bool authenticationSuccessful = true;
+        if (authenticationSuccessful)
+        {
+            HttpContext.Session.SetString("IsLoggedIn", "true");
+            return RedirectToAction("LoggedIn");
+        }
+        return View("Login", model);*/
+        return RedirectToAction("Create", "Login");
+    }
+
+    public IActionResult LogOut(){
+        HttpContext.Session.SetString("IsLoggedIn", "false");
+        HttpContext.Session.SetString("UserId", "");
+        return RedirectToAction("Index");
     }
 }

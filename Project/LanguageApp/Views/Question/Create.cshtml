@@ -1,27 +1,24 @@
-@model LanguageApp.Models.Word
+@model LanguageApp.Models.Question
 
 @{
     ViewData["Title"] = "Create";
 }
 
-
 <h1>Create</h1>
 
-<h4>Word</h4>
+<h4>Question</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Polish" class="control-label"></label>
-                <input asp-for="Polish" class="form-control" />
-                <span asp-validation-for="Polish" class="text-danger"></span>
+                <label asp-for="WordId" class="control-label"></label>
+                <select asp-for="WordId" class ="form-control" asp-items="ViewBag.WordId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Translation" class="control-label"></label>
-                <input asp-for="Translation" class="form-control" />
-                <span asp-validation-for="Translation" class="text-danger"></span>
+                <label asp-for="QuizId" class="control-label"></label>
+                <select asp-for="QuizId" class ="form-control" asp-items="ViewBag.QuizId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

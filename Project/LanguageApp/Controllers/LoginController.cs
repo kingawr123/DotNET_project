@@ -58,11 +58,42 @@ namespace LanguageApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UserId,Username,Password")] User User)
         {
-            if (ModelState.IsValid)
+            
+            // var errors = ModelState.Values.SelectMany(v => v.Errors);
+            // Console.WriteLine(errors.ToList()[0].ErrorMessage);
+            
+            if (ModelState.IsValid && !HttpContext.Session.Keys.Contains("pierwszy_request"))
             {
                 _context.Add(User);
                 await _context.SaveChangesAsync();
+                HttpContext.Session.SetString("IsLoggedIn", "true");
+                HttpContext.Session.SetString("UserId", User.UserId.ToString());
+                HttpContext.Session.SetString("Admin", User.UserId.ToString());
+                HttpContext.Session.SetString("pierwszy_request", "false");
                 return RedirectToAction(nameof(Index));
+            } else if( ModelState.IsValid && (HttpContext.Session.GetString("UserId") == HttpContext.Session.GetString("Admin"))){
+                _context.Add(User);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            } else if(ModelState.IsValid){
+                if ( _context.User == null)
+                {       
+                    return NotFound();
+                }
+                User user = _context.User.FirstOrDefault(u => u.Username == User.Username);
+                if (user == null)
+                {
+                    TempData["Message"] ="Nie znaleziono użytkownika!";
+                    return View(User);
+                }
+                if (User.Password != user.Password){
+                    TempData["Message"] ="Niepoprawne hasło!";
+                    return View(User);
+                }
+                HttpContext.Session.SetString("IsLoggedIn", "true");
+                HttpContext.Session.SetString("UserId", User.UserId.ToString());
+                return RedirectToAction(nameof(Index));
+
             }
             return View(User);
         }

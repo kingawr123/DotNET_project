@@ -10,95 +10,87 @@ using LanguageApp.Models;
 
 namespace LanguageApp.Controllers
 {
-    public class QuizController : Controller
+    public class QuestionController : Controller
     {
         private readonly LanguageAppContext _context;
 
-        public QuizController(LanguageAppContext context)
+        public QuestionController(LanguageAppContext context)
         {
             _context = context;
         }
 
-        // GET: Quiz
+        // GET: Question
         public async Task<IActionResult> Index()
         {
-              return _context.Quiz != null ? 
-
-
-                          View(await _context.Quiz.ToListAsync()) :
-                          Problem("Entity set 'LanguageAppContext.Quiz'  is null.");
+              return _context.Question != null ? 
+                          View(await _context.Question.ToListAsync()) :
+                          Problem("Entity set 'LanguageAppContext.Question'  is null.");
         }
 
-        // GET: Quiz/Details/5
+        // GET: Question/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Quiz == null)
+            if (id == null || _context.Question == null)
             {
                 return NotFound();
             }
 
-            var quiz = await _context.Quiz
-                .FirstOrDefaultAsync(m => m.QuizId == id);
-            if (quiz == null)
+            var question = await _context.Question
+                .FirstOrDefaultAsync(m => m.QuestionId == id);
+            if (question == null)
             {
                 return NotFound();
             }
 
-            return View(quiz);
+            return View(question);
         }
 
-        // GET: Quiz/Create
+        // GET: Question/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Quiz/Create
+        // POST: Question/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("QuizId,Name")] Quiz quiz)
+        public async Task<IActionResult> Create([Bind("QuestionId,WordId,QuizId")] Question question)
         {
-
-            var errors = ModelState.Values.SelectMany(v => v.Errors);
-            Console.WriteLine(errors.ToList()[0].ErrorMessage);
-            
             if (ModelState.IsValid)
             {
-                Console.WriteLine("Create");
-
-                _context.Add(quiz);
+                _context.Add(question);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(quiz);
+            return View(question);
         }
 
-        // GET: Quiz/Edit/5
+        // GET: Question/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Quiz == null)
+            if (id == null || _context.Question == null)
             {
                 return NotFound();
             }
 
-            var quiz = await _context.Quiz.FindAsync(id);
-            if (quiz == null)
+            var question = await _context.Question.FindAsync(id);
+            if (question == null)
             {
                 return NotFound();
             }
-            return View(quiz);
+            return View(question);
         }
 
-        // POST: Quiz/Edit/5
+        // POST: Question/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("QuizId,Name")] Quiz quiz)
+        public async Task<IActionResult> Edit(int id, [Bind("QuestionId,WordId,QuizId")] Question question)
         {
-            if (id != quiz.QuizId)
+            if (id != question.QuestionId)
             {
                 return NotFound();
             }
@@ -107,12 +99,12 @@ namespace LanguageApp.Controllers
             {
                 try
                 {
-                    _context.Update(quiz);
+                    _context.Update(question);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!QuizExists(quiz.QuizId))
+                    if (!QuestionExists(question.QuestionId))
                     {
                         return NotFound();
                     }
@@ -123,49 +115,49 @@ namespace LanguageApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(quiz);
+            return View(question);
         }
 
-        // GET: Quiz/Delete/5
+        // GET: Question/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Quiz == null)
+            if (id == null || _context.Question == null)
             {
                 return NotFound();
             }
 
-            var quiz = await _context.Quiz
-                .FirstOrDefaultAsync(m => m.QuizId == id);
-            if (quiz == null)
+            var question = await _context.Question
+                .FirstOrDefaultAsync(m => m.QuestionId == id);
+            if (question == null)
             {
                 return NotFound();
             }
 
-            return View(quiz);
+            return View(question);
         }
 
-        // POST: Quiz/Delete/5
+        // POST: Question/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Quiz == null)
+            if (_context.Question == null)
             {
-                return Problem("Entity set 'LanguageAppContext.Quiz'  is null.");
+                return Problem("Entity set 'LanguageAppContext.Question'  is null.");
             }
-            var quiz = await _context.Quiz.FindAsync(id);
-            if (quiz != null)
+            var question = await _context.Question.FindAsync(id);
+            if (question != null)
             {
-                _context.Quiz.Remove(quiz);
+                _context.Question.Remove(question);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool QuizExists(int id)
+        private bool QuestionExists(int id)
         {
-          return (_context.Quiz?.Any(e => e.QuizId == id)).GetValueOrDefault();
+          return (_context.Question?.Any(e => e.QuestionId == id)).GetValueOrDefault();
         }
     }
 }
