@@ -11,7 +11,7 @@ namespace LanguageApp.Models
         [Display(Name = "Tłumacznie")]
         public String? Translation { get; set; }
 
-        public ICollection<Quiz> ?Quizzes { get; set; }
+        public ICollection<Question> ?Questions { get; set; }
 
     }
 }

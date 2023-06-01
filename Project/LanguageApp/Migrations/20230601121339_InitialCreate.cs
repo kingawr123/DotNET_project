@@ -11,20 +11,6 @@ namespace LanguageApp.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Statistics",
-                columns: table => new
-                {
-                    UserId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    QuizCounter = table.Column<int>(type: "INTEGER", nullable: false),
-                    AverageScore = table.Column<double>(type: "REAL", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Statistics", x => x.UserId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
@@ -73,28 +59,61 @@ namespace LanguageApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "QuizWord",
+                name: "Statistics",
                 columns: table => new
                 {
-                    QuizzesQuizId = table.Column<int>(type: "INTEGER", nullable: false),
-                    WordsWordId = table.Column<int>(type: "INTEGER", nullable: false)
+                    StatisticsId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    QuizCounter = table.Column<int>(type: "INTEGER", nullable: false),
+                    AverageScore = table.Column<double>(type: "REAL", nullable: false),
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_QuizWord", x => new { x.QuizzesQuizId, x.WordsWordId });
+                    table.PrimaryKey("PK_Statistics", x => x.StatisticsId);
                     table.ForeignKey(
-                        name: "FK_QuizWord_Quiz_QuizzesQuizId",
-                        column: x => x.QuizzesQuizId,
+                        name: "FK_Statistics_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Question",
+                columns: table => new
+                {
+                    QuestionId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    WordId = table.Column<int>(type: "INTEGER", nullable: false),
+                    QuizId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Question", x => x.QuestionId);
+                    table.ForeignKey(
+                        name: "FK_Question_Quiz_QuizId",
+                        column: x => x.QuizId,
                         principalTable: "Quiz",
                         principalColumn: "QuizId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_QuizWord_Word_WordsWordId",
-                        column: x => x.WordsWordId,
+                        name: "FK_Question_Word_WordId",
+                        column: x => x.WordId,
                         principalTable: "Word",
                         principalColumn: "WordId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Question_QuizId",
+                table: "Question",
+                column: "QuizId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Question_WordId",
+                table: "Question",
+                column: "WordId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Quiz_UserId",
@@ -102,16 +121,16 @@ namespace LanguageApp.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_QuizWord_WordsWordId",
-                table: "QuizWord",
-                column: "WordsWordId");
+                name: "IX_Statistics_UserId",
+                table: "Statistics",
+                column: "UserId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "QuizWord");
+                name: "Question");
 
             migrationBuilder.DropTable(
                 name: "Statistics");

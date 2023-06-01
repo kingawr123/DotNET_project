@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LanguageApp.Migrations
 {
     [DbContext(typeof(LanguageAppContext))]
-    [Migration("20230601113340_InitialCreate")]
+    [Migration("20230601121339_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -18,6 +18,27 @@ namespace LanguageApp.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
+
+            modelBuilder.Entity("LanguageApp.Models.Question", b =>
+                {
+                    b.Property<int>("QuestionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("QuizId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("WordId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("QuestionId");
+
+                    b.HasIndex("QuizId");
+
+                    b.HasIndex("WordId");
+
+                    b.ToTable("Question");
+                });
 
             modelBuilder.Entity("LanguageApp.Models.Quiz", b =>
                 {
@@ -41,7 +62,7 @@ namespace LanguageApp.Migrations
 
             modelBuilder.Entity("LanguageApp.Models.Statistics", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("StatisticsId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -51,7 +72,12 @@ namespace LanguageApp.Migrations
                     b.Property<int>("QuizCounter")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("UserId");
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("StatisticsId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Statistics");
                 });
@@ -92,19 +118,19 @@ namespace LanguageApp.Migrations
                     b.ToTable("Word");
                 });
 
-            modelBuilder.Entity("QuizWord", b =>
+            modelBuilder.Entity("LanguageApp.Models.Question", b =>
                 {
-                    b.Property<int>("QuizzesQuizId")
-                        .HasColumnType("INTEGER");
+                    b.HasOne("LanguageApp.Models.Quiz", null)
+                        .WithMany("Questions")
+                        .HasForeignKey("QuizId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<int>("WordsWordId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("QuizzesQuizId", "WordsWordId");
-
-                    b.HasIndex("WordsWordId");
-
-                    b.ToTable("QuizWord");
+                    b.HasOne("LanguageApp.Models.Word", null)
+                        .WithMany("Questions")
+                        .HasForeignKey("WordId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("LanguageApp.Models.Quiz", b =>
@@ -118,24 +144,30 @@ namespace LanguageApp.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("QuizWord", b =>
+            modelBuilder.Entity("LanguageApp.Models.Statistics", b =>
                 {
-                    b.HasOne("LanguageApp.Models.Quiz", null)
+                    b.HasOne("LanguageApp.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("QuizzesQuizId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LanguageApp.Models.Word", null)
-                        .WithMany()
-                        .HasForeignKey("WordsWordId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("LanguageApp.Models.Quiz", b =>
+                {
+                    b.Navigation("Questions");
                 });
 
             modelBuilder.Entity("LanguageApp.Models.User", b =>
                 {
                     b.Navigation("Quizzes");
+                });
+
+            modelBuilder.Entity("LanguageApp.Models.Word", b =>
+                {
+                    b.Navigation("Questions");
                 });
 #pragma warning restore 612, 618
         }

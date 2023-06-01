@@ -12,7 +12,7 @@ namespace LanguageApp.Models
         public string Name { get; set; }
 
         [Display(Name = "Word")]
-        public ICollection<Word> ?Words { get; set; }   
+        public ICollection<Question> ?Questions { get; set; }   
        
         public User User { get; set; }
     
