@@ -23,7 +23,7 @@ namespace LanguageApp.Controllers
         public async Task<IActionResult> Index()
         {
               return _context.Word != null ? 
-                          View(await _context.Word.ToListAsync()) :
+                          View(await _context.Word.OrderBy(w => w.Polish).ToListAsync()) :
                           Problem("Entity set 'LanguageAppContext.Word'  is null.");
         }
 
