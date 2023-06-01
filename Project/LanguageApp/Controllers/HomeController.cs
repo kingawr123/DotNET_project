@@ -43,9 +43,12 @@ public class HomeController : Controller
 
     public IActionResult Login(User model)
     {
-        string Username = model.Username;
-        string Password = model.Password;
-        _loggedin = true;
-        return View();
+        return RedirectToAction("Create", "Login");
+    }
+
+    public IActionResult LogOut(){
+        HttpContext.Session.SetString("IsLoggedIn", "false");
+        HttpContext.Session.SetString("UserId", "");
+        return RedirectToAction("Index", "Home");
     }
 }
