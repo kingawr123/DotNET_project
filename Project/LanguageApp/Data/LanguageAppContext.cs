@@ -21,5 +21,7 @@ namespace LanguageApp.Data
         public DbSet<LanguageApp.Models.Statistics> Statistics { get; set; } = default!;
 
         public DbSet<LanguageApp.Models.User> User { get; set; } = default!;
+
+        public DbSet<LanguageApp.Models.Question> Question { get; set; } = default!;
     }
 }
