@@ -23,8 +23,6 @@ namespace LanguageApp.Controllers
         public async Task<IActionResult> Index()
         {
               return _context.Quiz != null ? 
-
-
                           View(await _context.Quiz.ToListAsync()) :
                           Problem("Entity set 'LanguageAppContext.Quiz'  is null.");
         }
@@ -60,10 +58,6 @@ namespace LanguageApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("QuizId,Name")] Quiz quiz)
         {
-
-            var errors = ModelState.Values.SelectMany(v => v.Errors);
-            Console.WriteLine(errors.ToList()[0].ErrorMessage);
-            
             if (ModelState.IsValid)
             {
                 Console.WriteLine("Create");

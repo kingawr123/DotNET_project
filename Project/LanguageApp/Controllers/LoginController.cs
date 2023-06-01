@@ -4,11 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Cryptography;
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 using LanguageApp.Data;
 using LanguageApp.Models;
 using System.Security.Cryptography;
 using System.Text;
+
 
 namespace LanguageApp.Controllers
 {
@@ -48,12 +51,13 @@ namespace LanguageApp.Controllers
             _context = context;
         }
 
-        // GET: Login
+        // GET: Login  <- all users
         public async Task<IActionResult> Index()
         {
-              return _context.User != null ? 
-                          View(await _context.User.ToListAsync()) :
-                          Problem("Entity set 'LanguageAppContext.User'  is null.");
+            var users = _context.User.Include(u => u.Quizzes).AsNoTracking();
+            return _context.User != null ? 
+                View(await users.ToListAsync()) :
+                Problem("Entity set 'LanguageAppContext.User'  is null.");
         }
 
         // GET: Login/Details/5
@@ -64,7 +68,7 @@ namespace LanguageApp.Controllers
                 return NotFound();
             }
 
-            var User = await _context.User
+            var User = await _context.User.Include(u => u.Quizzes)
                 .FirstOrDefaultAsync(m => m.UserId == id);
             if (User == null)
             {
@@ -127,6 +131,7 @@ namespace LanguageApp.Controllers
             }
             return View(User);
         }
+
 
         // GET: Login/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -220,5 +225,24 @@ namespace LanguageApp.Controllers
         {
           return (_context.User?.Any(e => e.UserId == id)).GetValueOrDefault();
         }
+
+        public bool DoesUserExists(string login, string pass)
+        {
+          return (_context.User?.Any(e => e.Username == login && e.Password == pass)).GetValueOrDefault();
+        }
+
+
+        static String skrotMD5(String napis)
+        {
+            Encoding enc = Encoding.UTF8;
+            var hashBuilder = new StringBuilder();
+            using var hash = MD5.Create();
+            byte[] result = hash.ComputeHash(enc.GetBytes(napis));
+            foreach (var b in result)
+                hashBuilder.Append(b.ToString("x2"));
+            return hashBuilder.ToString();
+        }
     }
 }
+
+
