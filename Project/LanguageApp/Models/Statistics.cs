@@ -5,7 +5,8 @@ namespace LanguageApp.Models
     public class Statistics
     {
         [Key]
-        public LoginVM UserId { get; set; }
+        public int StatisticsId { get; set; }
+        public ICollection<User> UserId { get; set; }
         
         [Display(Name = "Quiz Counter")]
         public int QuizCounter { get; set; }   

@@ -14,7 +14,7 @@ namespace LanguageApp.Models
         [Display(Name = "Word")]
         public ICollection<Word> ?Words { get; set; }   
        
-        public LoginVM User { get; set; }
+        public User User { get; set; }
     
     }
 }

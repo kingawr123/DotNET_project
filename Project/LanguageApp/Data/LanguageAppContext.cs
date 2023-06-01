@@ -18,6 +18,8 @@ namespace LanguageApp.Data
 
         public DbSet<LanguageApp.Models.Word> Word { get; set; } = default!;
 
-        public DbSet<LanguageApp.Models.LoginVM> LoginVM { get; set; } = default!;
+        public DbSet<LanguageApp.Models.Statistics> Statistics { get; set; } = default!;
+
+        public DbSet<LanguageApp.Models.User> User { get; set; } = default!;
     }
 }

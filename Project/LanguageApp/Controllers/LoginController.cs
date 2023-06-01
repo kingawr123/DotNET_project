@@ -22,27 +22,27 @@ namespace LanguageApp.Controllers
         // GET: Login
         public async Task<IActionResult> Index()
         {
-              return _context.LoginVM != null ? 
-                          View(await _context.LoginVM.ToListAsync()) :
-                          Problem("Entity set 'LanguageAppContext.LoginVM'  is null.");
+              return _context.User != null ? 
+                          View(await _context.User.ToListAsync()) :
+                          Problem("Entity set 'LanguageAppContext.User'  is null.");
         }
 
         // GET: Login/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.LoginVM == null)
+            if (id == null || _context.User == null)
             {
                 return NotFound();
             }
 
-            var loginVM = await _context.LoginVM
+            var User = await _context.User
                 .FirstOrDefaultAsync(m => m.UserId == id);
-            if (loginVM == null)
+            if (User == null)
             {
                 return NotFound();
             }
 
-            return View(loginVM);
+            return View(User);
         }
 
         // GET: Login/Create
@@ -56,31 +56,31 @@ namespace LanguageApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,Username,Password")] LoginVM loginVM)
+        public async Task<IActionResult> Create([Bind("UserId,Username,Password")] User User)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(loginVM);
+                _context.Add(User);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(loginVM);
+            return View(User);
         }
 
         // GET: Login/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.LoginVM == null)
+            if (id == null || _context.User == null)
             {
                 return NotFound();
             }
 
-            var loginVM = await _context.LoginVM.FindAsync(id);
-            if (loginVM == null)
+            var User = await _context.User.FindAsync(id);
+            if (User == null)
             {
                 return NotFound();
             }
-            return View(loginVM);
+            return View(User);
         }
 
         // POST: Login/Edit/5
@@ -88,9 +88,9 @@ namespace LanguageApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,Username,Password")] LoginVM loginVM)
+        public async Task<IActionResult> Edit(int id, [Bind("UserId,Username,Password")] User User)
         {
-            if (id != loginVM.UserId)
+            if (id != User.UserId)
             {
                 return NotFound();
             }
@@ -99,12 +99,12 @@ namespace LanguageApp.Controllers
             {
                 try
                 {
-                    _context.Update(loginVM);
+                    _context.Update(User);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LoginVMExists(loginVM.UserId))
+                    if (!UserExists(User.UserId))
                     {
                         return NotFound();
                     }
@@ -115,25 +115,25 @@ namespace LanguageApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(loginVM);
+            return View(User);
         }
 
         // GET: Login/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.LoginVM == null)
+            if (id == null || _context.User == null)
             {
                 return NotFound();
             }
 
-            var loginVM = await _context.LoginVM
+            var User = await _context.User
                 .FirstOrDefaultAsync(m => m.UserId == id);
-            if (loginVM == null)
+            if (User == null)
             {
                 return NotFound();
             }
 
-            return View(loginVM);
+            return View(User);
         }
 
         // POST: Login/Delete/5
@@ -141,23 +141,23 @@ namespace LanguageApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.LoginVM == null)
+            if (_context.User == null)
             {
-                return Problem("Entity set 'LanguageAppContext.LoginVM'  is null.");
+                return Problem("Entity set 'LanguageAppContext.User'  is null.");
             }
-            var loginVM = await _context.LoginVM.FindAsync(id);
-            if (loginVM != null)
+            var User = await _context.User.FindAsync(id);
+            if (User != null)
             {
-                _context.LoginVM.Remove(loginVM);
+                _context.User.Remove(User);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool LoginVMExists(int id)
+        private bool UserExists(int id)
         {
-          return (_context.LoginVM?.Any(e => e.UserId == id)).GetValueOrDefault();
+          return (_context.User?.Any(e => e.UserId == id)).GetValueOrDefault();
         }
     }
 }

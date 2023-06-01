@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LanguageApp.Models
 {
-    public class LoginVM
+    public class User
     {
         [Key]
         public int UserId { get; set; }

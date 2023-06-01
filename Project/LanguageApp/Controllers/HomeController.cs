@@ -19,7 +19,7 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Login(LoginVM model)
+    public IActionResult Login(User model)
     {
         string Username = model.Username;
         string Password = model.Password;
