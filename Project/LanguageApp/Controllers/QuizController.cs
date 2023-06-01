@@ -58,12 +58,7 @@ namespace LanguageApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("QuizId,Name")] Quiz quiz)
         {
-
-            var errors = ModelState.Values.SelectMany(v => v.Errors);
-            if (errors.ToList().Count > 0){
-                Console.WriteLine(errors.ToList()[0].ErrorMessage);
-            }
-            
+            quiz.User = _context.User.FirstOrDefault();
             if (ModelState.IsValid)
             {
                 Console.WriteLine("Create");
