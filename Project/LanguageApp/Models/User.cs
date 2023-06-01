@@ -14,6 +14,6 @@ namespace LanguageApp.Models
 
         public string Password { get; set; }
 
-        public ICollection<Quiz> Quizzes { get; set; }
+        public ICollection<Quiz>? Quizzes { get; set; }
     }
 }

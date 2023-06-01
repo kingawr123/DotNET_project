@@ -58,6 +58,10 @@ namespace LanguageApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UserId,Username,Password")] User User)
         {
+            
+            // var errors = ModelState.Values.SelectMany(v => v.Errors);
+            // Console.WriteLine(errors.ToList()[0].ErrorMessage);
+            
             if (ModelState.IsValid)
             {
                 _context.Add(User);
