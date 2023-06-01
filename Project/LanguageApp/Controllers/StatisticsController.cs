@@ -10,87 +10,87 @@ using LanguageApp.Models;
 
 namespace LanguageApp.Controllers
 {
-    public class WordController : Controller
+    public class StatisticsController : Controller
     {
         private readonly LanguageAppContext _context;
 
-        public WordController(LanguageAppContext context)
+        public StatisticsController(LanguageAppContext context)
         {
             _context = context;
         }
 
-        // GET: Word
+        // GET: Statistics
         public async Task<IActionResult> Index()
         {
-              return _context.Word != null ? 
-                          View(await _context.Word.OrderBy(w => w.Polish).ToListAsync()) :
-                          Problem("Entity set 'LanguageAppContext.Word'  is null.");
+              return _context.Statistics != null ? 
+                          View(await _context.Statistics.ToListAsync()) :
+                          Problem("Entity set 'LanguageAppContext.Statistics'  is null.");
         }
 
-        // GET: Word/Details/5
+        // GET: Statistics/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Word == null)
+            if (id == null || _context.Statistics == null)
             {
                 return NotFound();
             }
 
-            var word = await _context.Word
-                .FirstOrDefaultAsync(m => m.WordId == id);
-            if (word == null)
+            var statistics = await _context.Statistics
+                .FirstOrDefaultAsync(m => m.StatisticsId == id);
+            if (statistics == null)
             {
                 return NotFound();
             }
 
-            return View(word);
+            return View(statistics);
         }
 
-        // GET: Word/Create
+        // GET: Statistics/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Word/Create
+        // POST: Statistics/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("WordId,Polish,Translation")] Word word)
+        public async Task<IActionResult> Create([Bind("StatisticsId,QuizCounter,AverageScore")] Statistics statistics)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(word);
+                _context.Add(statistics);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(word);
+            return View(statistics);
         }
 
-        // GET: Word/Edit/5
+        // GET: Statistics/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Word == null)
+            if (id == null || _context.Statistics == null)
             {
                 return NotFound();
             }
 
-            var word = await _context.Word.FindAsync(id);
-            if (word == null)
+            var statistics = await _context.Statistics.FindAsync(id);
+            if (statistics == null)
             {
                 return NotFound();
             }
-            return View(word);
+            return View(statistics);
         }
 
-        // POST: Word/Edit/5
+        // POST: Statistics/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("WordId,Polish,Translation")] Word word)
+        public async Task<IActionResult> Edit(int id, [Bind("StatisticsId,QuizCounter,AverageScore")] Statistics statistics)
         {
-            if (id != word.WordId)
+            if (id != statistics.StatisticsId)
             {
                 return NotFound();
             }
@@ -99,12 +99,12 @@ namespace LanguageApp.Controllers
             {
                 try
                 {
-                    _context.Update(word);
+                    _context.Update(statistics);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!WordExists(word.WordId))
+                    if (!StatisticsExists(statistics.StatisticsId))
                     {
                         return NotFound();
                     }
@@ -115,49 +115,49 @@ namespace LanguageApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(word);
+            return View(statistics);
         }
 
-        // GET: Word/Delete/5
+        // GET: Statistics/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Word == null)
+            if (id == null || _context.Statistics == null)
             {
                 return NotFound();
             }
 
-            var word = await _context.Word
-                .FirstOrDefaultAsync(m => m.WordId == id);
-            if (word == null)
+            var statistics = await _context.Statistics
+                .FirstOrDefaultAsync(m => m.StatisticsId == id);
+            if (statistics == null)
             {
                 return NotFound();
             }
 
-            return View(word);
+            return View(statistics);
         }
 
-        // POST: Word/Delete/5
+        // POST: Statistics/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Word == null)
+            if (_context.Statistics == null)
             {
-                return Problem("Entity set 'LanguageAppContext.Word'  is null.");
+                return Problem("Entity set 'LanguageAppContext.Statistics'  is null.");
             }
-            var word = await _context.Word.FindAsync(id);
-            if (word != null)
+            var statistics = await _context.Statistics.FindAsync(id);
+            if (statistics != null)
             {
-                _context.Word.Remove(word);
+                _context.Statistics.Remove(statistics);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool WordExists(int id)
+        private bool StatisticsExists(int id)
         {
-          return (_context.Word?.Any(e => e.WordId == id)).GetValueOrDefault();
+          return (_context.Statistics?.Any(e => e.StatisticsId == id)).GetValueOrDefault();
         }
     }
 }

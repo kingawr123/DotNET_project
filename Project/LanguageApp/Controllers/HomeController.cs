@@ -1,12 +1,13 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using LanguageApp.Models;
+using LoginController = LanguageApp.Controllers.LoginController;
+
 
 namespace LanguageApp.Controllers;
 
 public class HomeController : Controller
 {
-    private bool _loggedin = true;
+    private bool _loggedin;
 
     private readonly ILogger<HomeController> _logger;
 
@@ -28,7 +29,6 @@ public class HomeController : Controller
         else
         {
             return View();
-        }
     }
 
     public IActionResult LoggedIn(){
@@ -37,21 +37,9 @@ public class HomeController : Controller
 
     public IActionResult Login(User model)
     {
-        /*string Username = model.Username;
+        string Username = model.Username;
         string Password = model.Password;
-        bool authenticationSuccessful = true;
-        if (authenticationSuccessful)
-        {
-            HttpContext.Session.SetString("IsLoggedIn", "true");
-            return RedirectToAction("LoggedIn");
-        }
-        return View("Login", model);*/
-        return RedirectToAction("Create", "Login");
-    }
-
-    public IActionResult LogOut(){
-        HttpContext.Session.SetString("IsLoggedIn", "false");
-        HttpContext.Session.SetString("UserId", "");
-        return RedirectToAction("Index");
+        _loggedin = true;
+        return View();
     }
 }

@@ -12,7 +12,5 @@ namespace LanguageApp.Models
 
         [Display(Name = "Average Score")]
         public double AverageScore { get; set; }
-        
-        public User User { get; set; }
     }
 }

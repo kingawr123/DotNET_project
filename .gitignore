@@ -3,3 +3,5 @@
 *.editorconfig
 *.dll
 *.debug
+*.db-wal
+*.db-shm

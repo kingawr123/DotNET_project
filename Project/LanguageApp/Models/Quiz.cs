@@ -9,7 +9,7 @@ namespace LanguageApp.Models
 
         [Required]
         [Display(Name = "Name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Display(Name = "Word")]
         public ICollection<Question> ?Questions { get; set; }   
