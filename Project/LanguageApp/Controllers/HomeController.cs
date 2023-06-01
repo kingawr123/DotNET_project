@@ -18,8 +18,9 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
-        if (HttpContext.Session.Keys.Contains("pierwszy_request")){
-            TempData["Message"] =HttpContext.Session.GetString("UserId") == HttpContext.Session.GetString("Admin");
+        if (HttpContext.Session.GetString("UserId") == HttpContext.Session.GetString("Admin")){
+            TempData["Message"] ="witaj adminie!";
+            return RedirectToAction("AdminLoggedIn");
         }
         if (isLoggedIn == "true")
         {
@@ -32,6 +33,10 @@ public class HomeController : Controller
     }
 
     public IActionResult LoggedIn(){
+        return View();
+    }
+
+    public IActionResult AdminLoggedIn(){
         return View();
     }
 

@@ -7,12 +7,41 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LanguageApp.Data;
 using LanguageApp.Models;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace LanguageApp.Controllers
 {
     public class LoginController : Controller
     {
         private readonly LanguageAppContext _context;
+
+        private string HashString(string input)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                // Convert the input string to a byte array
+                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+
+                // Compute the hash of the input bytes
+                byte[] hashBytes = sha256.ComputeHash(inputBytes);
+
+                // Convert the hashed bytes to a hexadecimal string
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in hashBytes)
+                {
+                    sb.Append(b.ToString("x2"));
+                }
+
+                return sb.ToString();
+            }
+        }
+
+        private bool VerifyHash(string input, string hashedInput)
+        {
+            string hashedInputToVerify = HashString(input);
+            return StringComparer.OrdinalIgnoreCase.Compare(hashedInputToVerify, hashedInput) == 0;
+        }
 
         public LoginController(LanguageAppContext context)
         {
@@ -64,17 +93,18 @@ namespace LanguageApp.Controllers
             
             if (ModelState.IsValid && !HttpContext.Session.Keys.Contains("pierwszy_request"))
             {
+                User.Password = HashString(User.Password);
                 _context.Add(User);
                 await _context.SaveChangesAsync();
                 HttpContext.Session.SetString("IsLoggedIn", "true");
                 HttpContext.Session.SetString("UserId", User.UserId.ToString());
                 HttpContext.Session.SetString("Admin", User.UserId.ToString());
                 HttpContext.Session.SetString("pierwszy_request", "false");
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             } else if( ModelState.IsValid && (HttpContext.Session.GetString("UserId") == HttpContext.Session.GetString("Admin"))){
                 _context.Add(User);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             } else if(ModelState.IsValid){
                 if ( _context.User == null)
                 {       
@@ -86,13 +116,13 @@ namespace LanguageApp.Controllers
                     TempData["Message"] ="Nie znaleziono użytkownika!";
                     return View(User);
                 }
-                if (User.Password != user.Password){
+                if (VerifyHash(user.Password, User.Password )){
                     TempData["Message"] ="Niepoprawne hasło!";
                     return View(User);
                 }
                 HttpContext.Session.SetString("IsLoggedIn", "true");
                 HttpContext.Session.SetString("UserId", User.UserId.ToString());
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
 
             }
             return View(User);
