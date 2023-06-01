@@ -8,11 +8,21 @@
     Layout = "~/Views/Shared/_WordLayout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Dictionary</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<div>
+    <form asp-action="Index" method="get">
+        <p>
+            <input type="text" name="searchString" />
+            <input type="submit" value="Search" />
+        </p>
+    </form>
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -26,20 +36,26 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Polish)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Translation)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.WordId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.WordId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.WordId">Delete</a>
-            </td>
-        </tr>
-}
+        @{
+            var searchString = Context.Request.Query["searchString"];
+            var filteredWords = string.IsNullOrEmpty(searchString)
+                ? Model
+                : Model.Where(w => w.Polish.StartsWith(searchString) || w.Translation.StartsWith(searchString));
+        }
+        @foreach (var item in filteredWords){
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Polish)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Translation)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.WordId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.WordId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.WordId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

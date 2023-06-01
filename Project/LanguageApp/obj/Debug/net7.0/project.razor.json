@@ -18650,6 +18650,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\kinga\\Documents\\Github\\DotNET_project\\Project\\LanguageApp\\Views\\Statistics\\Details.cshtml",
+      "TargetPath": "Views\\Statistics\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\kinga\\Documents\\Github\\DotNET_project\\Project\\LanguageApp\\Views\\Word\\Edit.cshtml",
       "TargetPath": "Views\\Word\\Edit.cshtml",
       "FileKind": "mvc"
@@ -18657,6 +18662,11 @@
     {
       "FilePath": "c:\\Users\\kinga\\Documents\\Github\\DotNET_project\\Project\\LanguageApp\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\kinga\\Documents\\Github\\DotNET_project\\Project\\LanguageApp\\Views\\Statistics\\Edit.cshtml",
+      "TargetPath": "Views\\Statistics\\Edit.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -18765,6 +18775,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\kinga\\Documents\\Github\\DotNET_project\\Project\\LanguageApp\\Views\\Statistics\\Delete.cshtml",
+      "TargetPath": "Views\\Statistics\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\kinga\\Documents\\Github\\DotNET_project\\Project\\LanguageApp\\Views\\Quiz\\Index.cshtml",
       "TargetPath": "Views\\Quiz\\Index.cshtml",
       "FileKind": "mvc"
@@ -18772,6 +18787,16 @@
     {
       "FilePath": "c:\\Users\\kinga\\Documents\\Github\\DotNET_project\\Project\\LanguageApp\\Views\\Login\\Delete.cshtml",
       "TargetPath": "Views\\Login\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\kinga\\Documents\\Github\\DotNET_project\\Project\\LanguageApp\\Views\\Statistics\\Create.cshtml",
+      "TargetPath": "Views\\Statistics\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\kinga\\Documents\\Github\\DotNET_project\\Project\\LanguageApp\\Views\\Statistics\\Index.cshtml",
+      "TargetPath": "Views\\Statistics\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
