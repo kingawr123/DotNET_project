@@ -6,7 +6,7 @@ namespace LanguageApp.Controllers;
 
 public class HomeController : Controller
 {
-    private bool _loggedin;
+    private bool _loggedin = true;
 
     private readonly ILogger<HomeController> _logger;
 
