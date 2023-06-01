@@ -1,0 +1,26 @@
+1. dotnet new mvc
+
+2. Instalujemy NuGet Package Manager GUI (taki z niebiesk¹ ikonk¹)
+
+ctrl + shift + p 
+NuGet Package Manager GUI
+wyœwietla
+
+
+3. Dorzucamy do g³ównego katalogu Nuget.config
+
+dotnet tool install --global dotnet-aspnet-codegenerator
+dotnet tool install --global dotnet-ef
+
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+
+
+
+4. Migrujemy bazê
+
+dotnet ef migrations add InitialCreate
+dotnet ef database update
