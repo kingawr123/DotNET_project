@@ -29,6 +29,7 @@ public class HomeController : Controller
         else
         {
             return View();
+        }
     }
 
     public IActionResult LoggedIn(){
