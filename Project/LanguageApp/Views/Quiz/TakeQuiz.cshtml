@@ -1,0 +1,35 @@
+@model LanguageApp.Models.QuizDetails
+
+@{
+    ViewData["Title"] = "Take Quiz";
+}
+
+<h1>Take Quiz</h1>
+
+<h4>Quiz: @Model.Quiz.Name</h4>
+
+@using (Html.BeginForm("FinishQuiz", "Quiz", FormMethod.Post))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Polish</th>
+                <th>Answer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var word in Model.Words)
+            {
+                <tr>
+                    <td>@word.Polish</td>
+                    <td>
+                        <input type="text" name="answers[@word.WordId]" />
+                        @Html.Hidden("wordIds[]", word.WordId)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="submit">Finish!</button>
+}

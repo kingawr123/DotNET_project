@@ -45,27 +45,14 @@ namespace LanguageApp.Controllers
             return View(question);
         }
 
-        // GET: Question/Create
+        [HttpGet]
         public IActionResult Create()
         {
+            
+
             return View();
         }
 
-        // POST: Question/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("QuestionId,WordId,QuizId")] Question question)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(question);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(question);
-        }
 
         // GET: Question/Edit/5
         public async Task<IActionResult> Edit(int? id)
