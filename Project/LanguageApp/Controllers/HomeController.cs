@@ -20,7 +20,7 @@ public class HomeController : Controller
     {
         string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
         if (HttpContext.Session.GetString("UserId") == HttpContext.Session.GetString("Admin")){
-            TempData["Message"] ="witaj adminie!";
+            TempData["Message"] ="Witaj" + HttpContext.Session.GetString("UserId");
             return RedirectToAction("AdminLoggedIn");
         }
         if (isLoggedIn == "true")

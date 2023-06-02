@@ -95,10 +95,19 @@ namespace LanguageApp.Controllers
             // var errors = ModelState.Values.SelectMany(v => v.Errors);
             // Console.WriteLine(errors.ToList()[0].ErrorMessage);
             
+            Random rnd = new Random();
+            int id = rnd.Next(1, 1000000);
+            User.UserId = id;
+            var stats = new Statistics{StatisticsId = id, QuizCounter = 0, AverageScore = 0.0};
+            _context.Add(stats);
+            await _context.SaveChangesAsync();
+
             if (ModelState.IsValid && !HttpContext.Session.Keys.Contains("pierwszy_request"))
             {
                 User.Password = HashString(User.Password);
-                _context.Add(User);
+                 _context.Add(User);
+
+
                 await _context.SaveChangesAsync();
                 HttpContext.Session.SetString("IsLoggedIn", "true");
                 HttpContext.Session.SetString("UserId", User.UserId.ToString());

@@ -5,6 +5,8 @@ namespace LanguageApp.Models
     public class Statistics
     {
         [Key]
+        [Display(Name = "User Id")]
+
         public int StatisticsId { get; set; }
         
         [Display(Name = "Quiz Counter")]

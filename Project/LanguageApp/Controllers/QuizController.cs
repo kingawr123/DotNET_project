@@ -252,6 +252,43 @@ namespace LanguageApp.Controllers
             // You can store the points in the database or use them as needed
             // For demonstration purposes, we will pass the points to the view
             QuizResults results = new QuizResults { Points = points, Words = wordsSummary };
+
+            var userIdString = HttpContext.Session.GetString("UserId");
+            if (int.TryParse(userIdString, out int userId))
+            {
+                var statistic = _context.Statistics.FirstOrDefault(s => s.StatisticsId == userId);
+                if (statistic != null)
+                {
+
+                     double pointsValue = Convert.ToDouble(points);
+                    int wordsCount = words.Count;
+
+                    if (wordsCount > 0)
+                    {
+                        double averageScore = (statistic.QuizCounter * statistic.AverageScore + pointsValue / wordsCount) / (statistic.QuizCounter + 1);
+                        statistic.AverageScore = averageScore;
+                    }
+                    else
+                    {
+                        statistic.AverageScore = 0; // Handle the case when wordsCount is 0
+                    }
+                    statistic.QuizCounter = statistic.QuizCounter + 1;
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    statistic = new Statistics { StatisticsId =  int.Parse(HttpContext.Session.GetString("UserId")), 
+                    QuizCounter = 1,
+                    AverageScore = points/words.Count};
+                    _context.Statistics.Add(statistic);
+                    _context.SaveChanges();
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
             
             // You can redirect to a results view or perform any other action
             return View(results);
