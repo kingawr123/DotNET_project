@@ -223,6 +223,7 @@ namespace LanguageApp.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult FinishQuiz(Dictionary<int, string> answers, int[] wordIds)
         {
             // Perform the necessary logic to evaluate the answers and calculate points
@@ -240,13 +241,20 @@ namespace LanguageApp.Controllers
             }
 
             var words = _context.Word.Where(w => wordIds.Contains(w.WordId)).ToList();
+            List<WordSummary> wordsSummary = new List<WordSummary>();
+            for (int i=0; i<words.Count; i++){
+                wordsSummary.Add(new WordSummary { 
+                    Polish = words[i].Polish, 
+                    Answer = words[i].Translation, 
+                    YourAnswer = answers[words[i].WordId]});
+            }
             
             // You can store the points in the database or use them as needed
             // For demonstration purposes, we will pass the points to the view
-            ViewBag.Points = points;
+            QuizResults results = new QuizResults { Points = points, Words = wordsSummary };
             
             // You can redirect to a results view or perform any other action
-            return View(points);
+            return View(results);
         }
        
     }

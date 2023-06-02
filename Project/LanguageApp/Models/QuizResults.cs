@@ -7,8 +7,7 @@ namespace LanguageApp.Models
 {
     public class QuizResults
     {
-        public int points { get; set; }
-        public List<Word> words { get; set; }
-        Dictionary<int, string> answers { get; set; }
+        public int Points { get; set; }
+        public List<WordSummary> Words { get; set; }
     }
 }
