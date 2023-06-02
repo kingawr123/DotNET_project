@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LanguageApp.Migrations
 {
     [DbContext(typeof(LanguageAppContext))]
-    [Migration("20230602094427_InitialCreate")]
+    [Migration("20230602100156_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -43,6 +43,14 @@ namespace LanguageApp.Migrations
                 {
                     b.Property<int>("QuizId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("Liczba")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")

@@ -56,7 +56,7 @@ namespace LanguageApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("QuizId,Name")] Quiz quiz)
+        public async Task<IActionResult> Create([Bind("QuizId,Name,Description,Liczba")] Quiz quiz)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace LanguageApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("QuizId,Name")] Quiz quiz)
+        public async Task<IActionResult> Edit(int id, [Bind("QuizId,Name,Description,Liczba")] Quiz quiz)
         {
             if (id != quiz.QuizId)
             {
