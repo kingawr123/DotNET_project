@@ -5,3 +5,7 @@
 *.debug
 *.db-wal
 *.db-shm
+Project/LanguageApp/obj/LanguageApp.csproj.nuget.g.props
+*.db-shm
+*.db-wal
+Project/LanguageApp/obj/project.assets.json
