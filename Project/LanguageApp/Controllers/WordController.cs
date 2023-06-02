@@ -22,6 +22,11 @@ namespace LanguageApp.Controllers
         // GET: Word
         public async Task<IActionResult> Index()
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
               return _context.Word != null ? 
                           View(await _context.Word.OrderBy(w => w.Polish).ToListAsync()) :
                           Problem("Entity set 'LanguageAppContext.Word'  is null.");
@@ -30,6 +35,11 @@ namespace LanguageApp.Controllers
         // GET: Word/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (id == null || _context.Word == null)
             {
                 return NotFound();
@@ -48,6 +58,11 @@ namespace LanguageApp.Controllers
         // GET: Word/Create
         public IActionResult Create()
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
@@ -58,6 +73,11 @@ namespace LanguageApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("WordId,Polish,Translation")] Word word)
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(word);
@@ -70,6 +90,11 @@ namespace LanguageApp.Controllers
         // GET: Word/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (id == null || _context.Word == null)
             {
                 return NotFound();
@@ -90,6 +115,11 @@ namespace LanguageApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("WordId,Polish,Translation")] Word word)
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (id != word.WordId)
             {
                 return NotFound();
@@ -121,6 +151,11 @@ namespace LanguageApp.Controllers
         // GET: Word/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (id == null || _context.Word == null)
             {
                 return NotFound();
@@ -141,6 +176,11 @@ namespace LanguageApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (_context.Word == null)
             {
                 return Problem("Entity set 'LanguageAppContext.Word'  is null.");

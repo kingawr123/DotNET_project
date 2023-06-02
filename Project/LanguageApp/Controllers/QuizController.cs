@@ -22,6 +22,11 @@ namespace LanguageApp.Controllers
         // GET: Quiz
         public async Task<IActionResult> Index()
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
               return _context.Quiz != null ? 
                           View(await _context.Quiz.ToListAsync()) :
                           Problem("Entity set 'LanguageAppContext.Quiz'  is null.");
@@ -30,6 +35,11 @@ namespace LanguageApp.Controllers
         // GET: Quiz/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (id == null || _context.Quiz == null)
             {
                 return NotFound();
@@ -54,6 +64,11 @@ namespace LanguageApp.Controllers
         // GET: Quiz/Create
         public IActionResult Create()
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
@@ -64,6 +79,11 @@ namespace LanguageApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("QuizId,Name,Description,Liczba")] Quiz quiz)
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (ModelState.IsValid)
             {
                 var words = _context.Word.ToList();
@@ -108,6 +128,11 @@ namespace LanguageApp.Controllers
         // GET: Quiz/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (id == null || _context.Quiz == null)
             {
                 return NotFound();
@@ -159,6 +184,11 @@ namespace LanguageApp.Controllers
         // GET: Quiz/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (id == null || _context.Quiz == null)
             {
                 return NotFound();
@@ -179,6 +209,11 @@ namespace LanguageApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (_context.Quiz == null)
             {
                 return Problem("Entity set 'LanguageAppContext.Quiz'  is null.");
@@ -201,6 +236,11 @@ namespace LanguageApp.Controllers
         // GET: Quiz/Details/5
         public async Task<IActionResult> TakeQuiz(int? id)
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (id == null || _context.Quiz == null)
             {
                 return NotFound();
@@ -226,6 +266,11 @@ namespace LanguageApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult FinishQuiz(Dictionary<int, string> answers, int[] wordIds)
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             // Perform the necessary logic to evaluate the answers and calculate points
             int points = 0;
             for (int i = 0; i < wordIds.Length; i++)

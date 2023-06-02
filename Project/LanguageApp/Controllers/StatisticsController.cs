@@ -58,6 +58,11 @@ namespace LanguageApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StatisticsId,QuizCounter,AverageScore")] Statistics statistics)
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(statistics);
@@ -70,6 +75,11 @@ namespace LanguageApp.Controllers
         // GET: Statistics/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (id == null || _context.Statistics == null)
             {
                 return NotFound();
@@ -90,6 +100,11 @@ namespace LanguageApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("StatisticsId,QuizCounter,AverageScore")] Statistics statistics)
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (id != statistics.StatisticsId)
             {
                 return NotFound();
@@ -121,6 +136,11 @@ namespace LanguageApp.Controllers
         // GET: Statistics/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (id == null || _context.Statistics == null)
             {
                 return NotFound();
@@ -141,6 +161,11 @@ namespace LanguageApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            string isLoggedIn = HttpContext.Session.GetString("IsLoggedIn");
+            if (isLoggedIn == "false")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (_context.Statistics == null)
             {
                 return Problem("Entity set 'LanguageAppContext.Statistics'  is null.");
