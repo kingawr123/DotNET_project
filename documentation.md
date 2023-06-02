@@ -11,5 +11,15 @@ Aplikacja służy do nauki języka angielskiego. Po wybraniu poziomu trudności 
 
 ## Funkcjonalności
 
+- Logowanie
+- Rejestracja jako administrator
+- Dodawanie użytkowników (admin)
+- Wyświetlanie listy użytkowników (admin)
+- Usuwanie użytkowników (admin)
+- Dodawanie/Usuwanie/Edytowanie/Wyszukiwanie słów w słowniku 
+- Dodawanie/Usuwanie/Edytowanie/Wyszukiwanie quizów
+- Wyświetlanie listy quizów
+- Podgląd statystyk użytkownika
+
 
 
