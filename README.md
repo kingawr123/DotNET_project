@@ -22,9 +22,64 @@ Aby uruchomić aplikację należy:
 - Przejść do folderu `./Pojects/LanguageApp`
 - Uruchomić aplikację komendą `dotnet run`
 
+## Struktura projektu
+- LanguageApp
+    - Controllers
+        - HomeController.cs
+        - LoginController.cs
+        - HomeController.cs
+        - QuizController.cs
+        - StatisticsController.cs
+        - WordController.cs
+    - Data
+        - LanguageAppContext.cs
+    - Migrations
+        - ...
+    - Models
+        - ErrorViewModel.cs
+        - Quiz.cs
+        - QuizDetail.cs
+        - QuizResults.cs
+        - Question.cs
+        - Statistics.cs
+        - User.cs
+        - Word.cs
+        - WordSummary.cs
+    - Views
+        - Login
+            - Create.cshtml
+            - Delete.cshtml
+            - Edit.cshtml
+            - Index.cshtml
+        - Home
+            - Index.cshtml
+            - Privacy.cshtml
+        - Quiz
+            - Create.cshtml
+            - Delete.cshtml
+            - Edit.cshtml
+            - Index.cshtml
+            - FinishQuiz.cshtml
+            - TakeQuiz.cshtml
+        - Shared
+            - Error.cshtml
+            - _AdminLayout.cshtml
+            - _Layout.cshtml
+            - _LoginPartial.cshtml
+        - Statistics
+            - Index.cshtml
+        - Word
+            - Create.cshtml
+            - Delete.cshtml
+            - Edit.cshtml
+            - Index.cshtml
+    - wwwroot
+        - ...
+    - appsettings.json
+    - LanguageApp.csproj
+    - Program.cs
 
 ## Funkcjonalności
-
 - Logowanie
 - Rejestracja jako administrator
 - Dodawanie/Wyświetlanie/Usuwanie użytkowników (admin)
