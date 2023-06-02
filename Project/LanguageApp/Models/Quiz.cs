@@ -8,11 +8,11 @@ namespace LanguageApp.Models
         public int QuizId { get; set; }
 
         [Required]
-        [Display(Name = "Name")]
+        [Display(Name = "Nazwa")]
         public string? Name { get; set; }
 
         [Required]
-        [Display(Name = "Description")]
+        [Display(Name = "Opis")]
         public string? Description { get; set; }
 
         [Required]

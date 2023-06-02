@@ -10,8 +10,11 @@ namespace LanguageApp.Models
     {
         [Key]
         public int UserId { get; set; }
+
+        [Display(Name = "Login")]
         public string Username { get; set; }
 
+        [Display(Name = "Hasło")]
         public string Password { get; set; }
 
         public ICollection<Quiz>? Quizzes { get; set; }

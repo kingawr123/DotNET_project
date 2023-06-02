@@ -9,8 +9,6 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using LanguageApp.Data;
 using LanguageApp.Models;
-using System.Security.Cryptography;
-using System.Text;
 
 
 namespace LanguageApp.Controllers

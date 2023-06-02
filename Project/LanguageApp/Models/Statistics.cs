@@ -5,14 +5,14 @@ namespace LanguageApp.Models
     public class Statistics
     {
         [Key]
-        [Display(Name = "User Id")]
+        [Display(Name = "Id Użytkownika")]
 
         public int StatisticsId { get; set; }
         
-        [Display(Name = "Quiz Counter")]
+        [Display(Name = "Liczba wykonanych quizów")] 
         public int QuizCounter { get; set; }   
 
-        [Display(Name = "Average Score")]
+        [Display(Name = "Średnia wyników")]
         public double AverageScore { get; set; }
     }
 }
