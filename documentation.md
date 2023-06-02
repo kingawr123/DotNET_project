@@ -2,5 +2,14 @@
 
 ## Opis
 
-Aplikacja służy do nauki języka angielskiego. Po wybraniu poziomu trudności użytkownik może rozpocząć naukę. W trakcie nauki użytkownik może stworzyć quizy, które polegają na przetłumaczeniu słowa z języka obcego na język polski. Po zakończeniu nauki użytkownik może sprawdzić swoje wyniki.
+Aplikacja służy do nauki języka angielskiego. Po wybraniu poziomu trudności użytkownik może rozpocząć naukę. W trakcie nauki użytkownik może stworzyć quizy, które polegają na przetłumaczeniu słowa z języka angielskiego na język polski. Po zakończeniu nauki użytkownik może sprawdzić swoje wyniki.
+
+## Autorzy
+
+- Katarzyna Stępień - grupa 6 - godz. 17:30 piątek
+- Kinga Wrona - grupa 7 - godz. 19:00 piątek
+
+## Funkcjonalności
+
+
 
