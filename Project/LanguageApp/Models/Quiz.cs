@@ -11,10 +11,13 @@ namespace LanguageApp.Models
         [Display(Name = "Name")]
         public string? Name { get; set; }
 
-        [Display(Name = "Word")]
-        public ICollection<Question> ?Questions { get; set; }   
-       
-        public User User { get; set; }
+        [Required]
+        [Display(Name = "Description")]
+        public string? Description { get; set; }
+
+        [Required]
+        [Display(Name = "Liczba pytań")]
+        public int? Liczba { get; set; }
     
     }
 }
