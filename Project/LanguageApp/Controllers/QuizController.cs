@@ -41,8 +41,14 @@ namespace LanguageApp.Controllers
             {
                 return NotFound();
             }
+            var wordIds = _context.Question.Where(m => m.QuizId == id).Select(m => m.WordId).ToList();
+            foreach (var wordId in wordIds){
+                Console.WriteLine(wordId);
+            }
+            var words = _context.Word.Where(w => wordIds.Contains(w.WordId)).ToList();
+            QuizDetails details = new QuizDetails { Quiz = quiz, Words = words };
 
-            return View(quiz);
+            return View(details);
         }
 
         // GET: Quiz/Create
@@ -60,10 +66,42 @@ namespace LanguageApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                var words = _context.Word.ToList();
+                int id = _context.Question.Count();
+
+                Random rnd = new Random();
+                List<int> wordIds = words.Select(w => w.WordId).ToList();
+
                 _context.Add(quiz);
                 await _context.SaveChangesAsync();
+
+
+                for (int i = 0; i < quiz.Liczba; i++)
+                {
+                    int randomWordIndex = rnd.Next(words.Count);
+                    int wordId = words[randomWordIndex].WordId;
+
+                    // Check if the generated wordId exists in the wordIds list
+                    while (!wordIds.Contains(wordId))
+                    {
+                        randomWordIndex = rnd.Next(words.Count);
+                        wordId = words[randomWordIndex].WordId;
+                    }
+
+                    Question question = new Question
+                    {
+                        //QuestionId = ++id, 
+                        WordId = wordId,
+                        QuizId = quiz.QuizId
+                    };
+
+                    _context.Question.Add(question);
+                    await _context.SaveChangesAsync();
+                }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(quiz);
         }
 
@@ -159,5 +197,57 @@ namespace LanguageApp.Controllers
         {
           return (_context.Quiz?.Any(e => e.QuizId == id)).GetValueOrDefault();
         }
+
+        // GET: Quiz/Details/5
+        public async Task<IActionResult> TakeQuiz(int? id)
+        {
+            if (id == null || _context.Quiz == null)
+            {
+                return NotFound();
+            }
+
+            var quiz = await _context.Quiz
+                .FirstOrDefaultAsync(m => m.QuizId == id);
+            if (quiz == null)
+            {
+                return NotFound();
+            }
+            var wordIds = _context.Question.Where(m => m.QuizId == id).Select(m => m.WordId).ToList();
+            foreach (var wordId in wordIds){
+                Console.WriteLine(wordId);
+            }
+            var words = _context.Word.Where(w => wordIds.Contains(w.WordId)).ToList();
+            QuizDetails details = new QuizDetails { Quiz = quiz, Words = words };
+
+            return View(details);
+        }
+
+        [HttpPost]
+        public IActionResult FinishQuiz(Dictionary<int, string> answers, int[] wordIds)
+        {
+            // Perform the necessary logic to evaluate the answers and calculate points
+            int points = 0;
+            for (int i = 0; i < wordIds.Length; i++)
+            {
+                int wordId = wordIds[i];
+                string answer = answers[wordId];
+                
+                var word = _context.Word.FirstOrDefault(w => w.WordId == wordId);
+                if (word != null && answer == word.Translation)
+                {
+                    points++;
+                }
+            }
+
+            var words = _context.Word.Where(w => wordIds.Contains(w.WordId)).ToList();
+            
+            // You can store the points in the database or use them as needed
+            // For demonstration purposes, we will pass the points to the view
+            ViewBag.Points = points;
+            
+            // You can redirect to a results view or perform any other action
+            return View(points);
+        }
+       
     }
 }

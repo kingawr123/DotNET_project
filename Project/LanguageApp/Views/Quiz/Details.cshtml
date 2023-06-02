@@ -1,4 +1,4 @@
-@model LanguageApp.Models.Quiz
+@model LanguageApp.Models.QuizDetails
 
 @{
     ViewData["Title"] = "Details";
@@ -11,26 +11,49 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Quiz.Name)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Quiz.Name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Quiz.Description)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.Quiz.Description)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Liczba)
+            @Html.DisplayNameFor(model => model.Quiz.Liczba)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Liczba)
+            @Html.DisplayFor(model => model.Quiz.Liczba)
         </dd>
     </dl>
 </div>
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.QuizId">Edit</a> |
+    <h4>Słówka</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Polski</th>
+                <th>Tłumaczenie</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var word in Model.Words)
+            {
+                <tr>
+                    <td>@word.Polish</td>
+                    <td>@word.Translation</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Quiz.QuizId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
