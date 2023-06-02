@@ -2,12 +2,18 @@
 
 ## Opis
 
-Aplikacja służy do nauki języka angielskiego. Po wybraniu poziomu trudności użytkownik może rozpocząć naukę. Użytkownik może tworzyć quizy, które polegają na przetłumaczeniu słowa z języka angielskiego na język polski. Po zakończeniu nauki użytkownik może sprawdzić swoje wyniki.
+Aplikacja służy do nauki języka angielskiego. Po wybraniu poziomu trudności użytkownik może rozpocząć naukę. Użytkownik może tworzyć quizy, które polegają na przetłumaczeniu słowa z języka polskiego na język angielski. Po zakończeniu nauki użytkownik może sprawdzić swoje wyniki.
 
 ## Autorzy
 
 - Katarzyna Stępień - grupa 6 - godz. 17:30 piątek
 - Kinga Wrona - grupa 7 - godz. 19:00 piątek
+
+## Technologie
+- Baza danych - SQLite
+- Entity Framework
+- .NET, C#
+- MVC 
 
 ## Funkcjonalności
 
@@ -18,6 +24,7 @@ Aplikacja służy do nauki języka angielskiego. Po wybraniu poziomu trudności 
 - Dodawanie/Usuwanie/Edytowanie/Wyszukiwanie quizów
 - Wyświetlanie listy quizów
 - Wyświetlenie szczegółow quizu
+- Rozegranie quizu
 - Podgląd statystyk użytkownika -> ilość wykonanych quizów, średni wynik
 
 ## Baza danych
