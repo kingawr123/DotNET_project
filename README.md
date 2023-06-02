@@ -13,12 +13,11 @@ Aplikacja służy do nauki języka angielskiego. Po wybraniu poziomu trudności 
 
 - Logowanie
 - Rejestracja jako administrator
-- Dodawanie użytkowników (admin)
-- Wyświetlanie listy użytkowników (admin)
-- Usuwanie użytkowników (admin)
+- Dodawanie/Wyświetlanie/Usuwanie użytkowników (admin)
 - Dodawanie/Usuwanie/Edytowanie/Wyszukiwanie słów w słowniku 
 - Dodawanie/Usuwanie/Edytowanie/Wyszukiwanie quizów
 - Wyświetlanie listy quizów
+- Wyświetlenie szczegółow quizu
 - Podgląd statystyk użytkownika -> ilość wykonanych quizów, średni wynik
 
 ## Baza danych
