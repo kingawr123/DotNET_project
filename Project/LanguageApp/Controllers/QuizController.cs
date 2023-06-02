@@ -60,8 +60,6 @@ namespace LanguageApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                Console.WriteLine("Create");
-
                 _context.Add(quiz);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
