@@ -50,6 +50,7 @@ Aby uruchomić aplikację należy:
             - Create.cshtml
             - Delete.cshtml
             - Edit.cshtml
+            - Details.cshtml
             - Index.cshtml
         - Home
             - Index.cshtml
@@ -58,6 +59,7 @@ Aby uruchomić aplikację należy:
             - Create.cshtml
             - Delete.cshtml
             - Edit.cshtml
+            - Details.cshtml
             - Index.cshtml
             - FinishQuiz.cshtml
             - TakeQuiz.cshtml
@@ -65,13 +67,15 @@ Aby uruchomić aplikację należy:
             - Error.cshtml
             - _AdminLayout.cshtml
             - _Layout.cshtml
-            - _LoginPartial.cshtml
         - Statistics
             - Index.cshtml
+            - Details.cshtml
+
         - Word
             - Create.cshtml
             - Delete.cshtml
             - Edit.cshtml
+            - Details.cshtml
             - Index.cshtml
     - wwwroot
         - ...
